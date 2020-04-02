@@ -1,0 +1,16 @@
+{
+  "name": "python-renamer",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "codemirror": "^5.52.2",
+    "electron-rebuild": "^1.10.1",
+    "zerorpc": "git+https://github.com/0rpc/zerorpc-node.git"
+  },
+  "devDependencies": {
+    "electron": "1.8.8",
+    "electron-packager": "^9.0.1"
+  }
+}

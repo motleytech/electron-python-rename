@@ -1,0 +1,98 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Python file renamer!</title>
+    <link rel='stylesheet' href='./node_modules/codemirror/lib/codemirror.css' />
+    <link rel='stylesheet' href='./node_modules/codemirror/theme/mbo.css' />
+    <style>
+      body {
+        padding: 0px 15px;
+      }
+      @font-face {
+          font-family: Inconsolata;
+          src: url('./fonts/Inconsolata-Regular.ttf');
+      }
+      .row1 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 20px;
+      }
+      .row2 {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-column-gap: 20px;
+      }
+      .inputNames {
+        height: 40vh;
+        background: rgb(225, 230, 240);
+        padding: 10px;
+        font-size: 16px;
+      }
+      #outputPreview {
+        height: 40vh;
+        background: rgb(225, 230, 240);
+        padding: 10px;
+        font-size: 16px;
+      }
+      #codeBox {
+        height: 40vh;
+        background: rgb(225, 230, 240);
+        padding: 10px;
+      }
+      .CodeMirror {
+        font-family: Inconsolata, monospace;
+        font-size: 20px;
+        height: 100%;
+      }
+      .controls {
+        display: flex;
+        flex-direction: column;
+      }
+      .controls button {
+        padding: 10px;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      #renameButton {
+        background-color: rgb(243, 183, 183);
+      }
+      .title {
+        margin: 10px 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='row1'>
+      <textarea class='inputNames' id="dropTarget" readonly placeholder="Drop files here"></textarea>
+      <textarea id='outputPreview' readonly placeholder="Output names"></textarea>
+    </div>
+    <div class='row2'>
+      <div id='codeBox'></div>
+      <div class='controls'>
+        <button id='previewButton'>Preview</button>
+        <button id='renameButton'>Rename</button>
+      </div>
+    </div>
+  </body>
+  <script src='./node_modules/codemirror/lib/codemirror.js'></script>
+  <script src="./node_modules/codemirror/mode/python/python.js"></script>
+
+  <script>
+    require('./renderer.js')
+  </script>
+
+  <script>
+    const $input = document.querySelector('#codeBox')
+
+    const editor = CodeMirror($input, {
+      //various options - see CodeMirror docs
+      lineNumbers: true,
+      lineWrapping: true,
+      theme: 'mbo',
+      mode: 'python'
+    })
+  </script>
+</html>
