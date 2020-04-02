@@ -7,7 +7,11 @@ def rename(files, code, doit=False):
         outNames = []
         for fullpath in files.split('\n'):
             head, name = os.path.split(fullpath)
-            exec(code)
+
+            execNamespace = {'name': name}
+            exec(code, globals(), execNamespace)
+            name = execNamespace['name']
+
             newFullpath = os.path.join(head, name)
             if doit:
                 if fullpath != newFullpath:
@@ -21,7 +25,7 @@ class RenameApi(object):
         """based on the input text, return the int result"""
         try:
             return rename(files, code)
-        except Exception as e:
+        except Exception:
             from traceback import format_exc
             return format_exc()
 
@@ -29,7 +33,7 @@ class RenameApi(object):
         """based on the input text, return the int result"""
         try:
             return rename(files, code, doit=True)
-        except Exception as e:
+        except Exception:
             from traceback import format_exc
             return format_exc()
 
